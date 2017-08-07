@@ -1,23 +1,23 @@
 # raytracer
 Raytracer for Advanced Computer Graphics class 2017/1.
-Still in development!
+It's done!
 
-## TODO
+# TODO
+
+- Better Readme! Coming soon.
+
+## Features
 
 - Reflection and Refraction
 - Directional Light
 - Filters (Kernel Convolution)
 - Anti-Aliasing (jittering method)
-
-### Extras:
-
-- Aceelaration Techniques: (BVH, kd-trees...)
+- Aceelaration Techniques: BVH
 - Polygon Mesh Render
 - Transform
-
-### Done:
-
 - Basic Architeture of Raytracer
 - Scene Parser
 - Phong Model
 - Texture Mapping (Sphere and Plane)
+
+## Building

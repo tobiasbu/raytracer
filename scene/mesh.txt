@@ -1,0 +1,25 @@
+
+
+program: rt
+
+output: output/box.png
+
+shadows: 0
+
+projection: 60
+
+camera-pos: 0 0 -3
+camera-target: box
+
+begin mesh box
+	file: obj/caixa.obj
+	angle: -15 35 0
+end
+
+begin light
+	type: point
+	color: 1 1 1
+	position: 0 -0.5 -2.5
+	intensity: 30
+end
+

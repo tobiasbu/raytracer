@@ -1,0 +1,27 @@
+
+
+program: rt
+
+output: output/cat.png
+
+shadows: 0
+
+projection: 60
+
+camera-up: 0 1 0
+camera-pos: 0 1.15 -1.5
+camera-target: teapot
+
+begin mesh teapot
+	file: obj/teapot.obj
+	angle: 5 0 -5
+	position: 0 -0.1 -0.1
+end
+
+begin light
+	type: point
+	color: 1 1 1
+	position: 0 1.5 -2.5
+	intensity: 30
+end
+

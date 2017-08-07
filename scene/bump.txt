@@ -1,0 +1,41 @@
+
+projection: 60
+
+camera-pos: 0 -0.5 -3
+camera-up: 0 -1 0
+camera-dir: 0 0 0 
+
+shadows: 0
+
+background: 0.035 0.035 0.035
+
+
+begin material m
+
+
+	# diffuse weight
+	kd: 0.8
+	# specular color
+	specular: 1 1 1
+	# specular weight
+	ks: 0.2
+
+	texture: obj/crate.bmp
+
+
+	normalmap: obj/crate_normal.bmp
+	// transparentmap: img/world_clouds.jpg 0.65 // transparency level
+end
+
+begin mesh
+	file: obj/caixa.obj
+	material: m
+	angle: 0 45 0
+end
+
+begin light
+	type: point
+	color: 1 1 1
+	position: 0 -0.25 -2.5
+	intensity: 30
+end

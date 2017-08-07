@@ -1,0 +1,45 @@
+
+
+program: rt
+
+output: output/happy_budha_high.png
+
+shadows: 0
+
+projection: 60
+
+camera-up: 0 1 0
+camera-pos: 0 45 -55
+//camera-dir: 0 0 0
+//camera-target: budha
+
+begin mesh budha
+	file: obj/happy.obj
+	angle: 0 180 0
+	position: 0 2 0
+end
+
+
+
+begin light
+	type: point
+	color: 1 0.8 0.12
+	position: 0 55 -25
+	intensity: 1000
+end
+
+
+begin light
+	type: point
+	color: 1 0.95 0.12
+	position: 0 30 -25
+	intensity: 1000
+end
+
+begin light
+	type: point
+	color: 1 0.35 0.05
+	position: 5 65 -20
+	intensity: 500
+end
+

@@ -1,0 +1,55 @@
+
+
+program: rt
+
+output: output/high_dragon.png
+
+shadows: 0
+
+projection: 60
+
+camera-up: 0 1 0
+camera-pos: 2 35 -56
+//camera-target: dragon
+
+begin mesh dragon
+	file: obj/dragon_high.obj
+	angle: 10 180 0
+	position: 0 0 0
+end
+
+begin light
+	type: point
+	color: 1 1 1
+	position: 0 30 -25
+	intensity: 1000
+end
+
+begin light
+	type: point
+	color: 1 0.8 0.12
+	position: 0 40 -20
+	intensity: 1000
+end
+
+
+begin light
+	type: point
+	color: 0.1 0.95 0.4
+	position: 20 40 -20
+	intensity: 1000
+end
+
+begin light
+	type: point
+	color: 1 0.1 0.05
+	position: 25 65 -20
+	intensity: 1000
+end
+
+begin light
+	type: point
+	color: 0.1 0.15 1
+	position: -30 65 -20
+	intensity: 1000
+end

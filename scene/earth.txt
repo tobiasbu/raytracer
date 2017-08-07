@@ -1,0 +1,276 @@
+# This is a scene file for Raytracer program
+# The character '#' means commentary
+
+
+########## Program ########## 
+# Program defines what kind of algorithm will be used: raycast (rc) or raytracer (rt)
+# [default: rt (raytracer)]
+
+program: rc
+
+
+########## Output ########## (optinal)
+# Set output file name and format
+# Valid formats is .BMP, .PNG and .TGA
+[default: output.png]
+
+output: output_scene.png
+
+
+########## Reading Color Format ########## (optinal)
+# Color format defines what reading style are the color values writen. 
+# The RGBA values can be: normalized ou integer.
+# Using the keyword 'normalized' or '1' the color values is between 0...1 (float type).
+# Using the keyword 'integer' or '255' the color values is between 0...255 (integer type).
+# [default: normalized]
+
+colorformat: normalized
+
+
+########## Anti-aliasing  ########## (optinal)
+# The raytracer uses the jittering antialising method
+# [default: 2]
+
+anti-alias: 0
+
+
+########## Projection and Resolution ########## 
+# Now we define our projection and camera settings
+
+# Projection defines if we want to project as orthographic or perspective.
+# Follows with fov (field of view) in degrees or size of orthographic camera.
+# [default: perspective 60]
+
+projection: 60
+
+##perspective 80
+
+# We can define as orthographic camera:
+# projection: orthographic 5
+
+# Screen size 
+# [default: 640x480]
+
+resolution: 800 600
+
+
+########## Camera ########## 
+
+# To define our camera with must set the vector3 components: position, direction (target) and up vector
+# [defaults: position: 0 0 -5; direction: 0 0 0; up: 0 -1 0]
+
+camera: 0 -1 -2 0 0 0 0 -1 0
+
+# - It's possible to set the camera with each vector component, example:
+
+# camera-pos: 0 0 -5
+# camera-dir: 0 0 0 // don't forget that direction is the target of camera
+# camera-up: 0 1 0
+
+# - Anothers aproach to set the camera:
+
+# camera-eye: 0 0 -2 // is the same as position (camera-pos)
+
+# You can set the look at to center of scene object.
+# When you define the objects, like sphere, you start using 'begin' keyword
+# Then you give a name to this object. Example: "begin sphere myBeatifulSphere ..."
+
+# camera-target: myBeatifulSphere
+
+# Or just set the index of a object to the camera-target
+
+# camera-target: 0 // camera will be look at object with index 0
+
+########## Scene Settings ########## 
+# We can define the scene background, ambient color and a skybox.
+
+# Background color
+# [default: 0.1 0.1 0.1]
+
+background: 0.085 0.1 0.15
+
+# Ambient color
+
+ambient: 0 0 0
+
+# For more complex scene we can set a skybox: the cubemap. 
+# You need to have 6 images. Otherwise it will painted as background color.
+# The CubeMap face suffix definition are (in order): 'right','left','top','bottom', 'front','back'
+# Example: 
+
+begin cubemap
+
+	// path to cubemap files
+	path: img/cubemap/
+
+	// files suffix
+	suffix: galaxy_
+
+	// files format (don't need the dot)
+	format: png
+
+	# The final input in program must be img/cubemap_<FACE>.png where <FACE> means the face side
+	# The face must be in lowercase like 'cubemap_front.png'
+end
+
+
+########## Textures and Patterns ########## 
+# Loading a texture is really simple:
+# If the texture is not availble, it will render a pink color or albedo color instead
+# You don't need to load textures separately from material (check Material section)
+
+# texture world.png
+
+# You can create patterns - Procedural Generation
+# Currently you can create checkboard and stripe patterns
+begin pattern
+	pattern: checkboard 
+	color-0: 0 0 0 // first color of pattern (default: 0 0 0 (black))
+	color-1: 1 1 1 // first color of pattern (default: 1 1 1 (white))
+	scale: 1 1 // x and y scale of pattern
+end
+
+########## Materials ########## 
+# Materials can have diferentes properties to apply to objects.
+# If no material is applied, it will be the default program material setted.
+#
+# - Textures
+# You can load textures and normal maps with different properties.
+# Textures can have uv scale and offset.
+# Keys usage:
+# texture: path/to/image.png
+# normalmap: path/to/normalmap.jpg 
+# texture: image.jpg scale: 2 2 offset: 1 1
+#
+# - Naming material
+# Material need to have a name. You can give name in the start declaration:
+# If you don't give a name, the name will be "material%", where '%' represents the index
+# 
+# begin material myMaterial
+# 	texture: img/meme.png // path to texture image
+#	...
+# end
+# 
+# Or you can give material name into begin scope:
+#
+# begin material
+#	name: myDiffuseMaterial
+#	...
+# end
+
+
+begin material worldMaterial
+
+	# diffuse color, can be also 'albedo'
+	diffuse: 0.18 0.18 0.18
+	# diffuse weight
+	kd: 0.8
+	# specular color
+	specular: 1 1 1
+	# specular weight
+	ks: 0.2
+	
+	texture: img/world.jpg
+	# texture: obj/crate.bmp
+	unlit: false
+	
+# (keys can be be 'bumpmap' or 'normalmap'
+	# normalmap: img/normal.jpg
+	normalmap: img/world_bump2.jpg
+	# normalmap: obj/crate_normal.bmp
+	transparentmap: img/world_clouds.jpg 0.65 // transparency level
+end
+
+
+##########  Scene objects ########## 
+# We can create primitives for scene like Planes, Sphere, Cubes or Mesh
+# Mesh must be triangulated and on *.obj or *.geo format.
+
+# Set the number of objects in scene (don't needed)
+nobjects: 2
+
+#### Primitives ###
+
+# Let's create an Sphere
+
+begin sphere
+
+	radius: 1
+	position: 0 0 0
+	material: worldMaterial
+# see that the following color format is integer. so we just add 'i' character into start of the key
+# but if we had just color, we need to normalize the values when we write here
+	icolor: 255 100 0
+	 
+	refraction: 0
+# you can write the diffuse as integer value adding 'i' into start, otherwhise 'f' or 'n' for normalized values
+	diffuse: 0.4 0.4 0.4
+
+end
+
+# Creating an Plane
+
+##begin plane
+
+	checkboard: 1 1 1 0 0 0
+	normal: 0 1 0
+	offset: -1
+
+end
+
+### Polygon Meshes ###
+
+//begin mesh
+//	file: obj/dodecahedron.obj
+	file: obj/caixa.obj
+	material: worldMaterial
+//	position: 0 0 0
+//	scale: 1 1 1
+end
+
+########## Scene lights ########## 
+# Types of light: 'directional' or 'point' (spherical)
+# Properties: position, intensity (can be fallout) and color.
+# Directional Light has direction property
+
+nlights: 1 // don't needed it
+
+
+begin light
+	type: point
+	color: 1 1 1
+	position: -0.4 -1 -3
+	intensity: 60
+end
+
+begin light
+	type: directional // directional or point
+	color: 1 1 1
+	position: 0 0.5 -5
+	direction: 0 0 0
+	intensity: 0.2
+end
+
+//begin light
+	type: point 
+	color: 1 1 1
+	position: 0 0 -1.4
+	intensity: 1
+end
+
+
+
+
+########## Scene Filters ########## 
+
+nfilters: 2 // don't needed it
+
+begin filter
+	name: blur
+	level: 0
+end
+
+begin filter
+	name: sharpen
+	level: 0
+end
