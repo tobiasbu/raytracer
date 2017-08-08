@@ -109,6 +109,8 @@ glutInit(argc, argv);
 	stream.str("");
 }*/
 
+
+
 bool GLManager::initGLUT(const WindowInfo & window, const ContextSettings & context)
 {
 	int fakeargc = 1;
@@ -144,6 +146,8 @@ bool GLManager::initGLUT(const WindowInfo & window, const ContextSettings & cont
 	glutMouseFunc(mouseCallback);
 	glutPassiveMotionFunc(mouseMoveCallback);
 	glutSpecialUpFunc(specialUpCallback);
+
+	
 
 	initGLEW();
 

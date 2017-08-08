@@ -29,30 +29,6 @@ int main(int argc, char* argv[]) {
 		GLManager::run();
 	}
 
-	//glutInit(&argc, argv);
-
-	//App app;
-	//app.execute();
-
-	
-
-	// img;
-
-	//img.saveBMP("output.bmp");
-
-	
-	
-	//t.m[5] = 135153;
-
-
-	//std::cout << std::numeric_limits<float>().has_infinity << std::endl;
-
-	//std::cout << std::numeric_limits<float>().infinity() << std::endl;
-
-	//system("pause");
-	//while (window. ) {
-
-	//}
 
 	return 0;
 
