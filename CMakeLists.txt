@@ -1,6 +1,32 @@
 cmake_minimum_required(VERSION 2.8)
 
 project (Raytracer)
+
+# COPY DIRECTORY
+# Copy files from source directory to destination directory, substituting any
+# variables.  Create destination directory if it does not exist.
+
+macro(configure_files srcDir destDir)
+    message(STATUS "Configuring directory ${destDir}")
+    make_directory(${destDir})
+
+    file(GLOB templateFiles RELATIVE ${srcDir} ${srcDir}/*)
+	
+    foreach(templateFile ${templateFiles})
+        set(srcTemplatePath ${srcDir}/${templateFile})
+		
+        if(NOT IS_DIRECTORY ${srcTemplatePath})
+		
+            message(STATUS "Configuring file ${templateFile}")
+            configure_file(
+                    ${srcTemplatePath}
+                    ${destDir}/${templateFile}
+                    COPYONLY IMMEDIATE)
+					
+        endif(NOT IS_DIRECTORY ${srcTemplatePath})
+    endforeach(templateFile)
+endmacro(configure_files)
+
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 #set(CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}" "INSTALL")
 #set(CMAKE_SUPPRESS_REGENERATION true)
@@ -18,22 +44,17 @@ endif()
 
 
 
-# COPY DIRECTORY
-macro(copy_dir srcDir destDir)
-    file(GLOB_RECURSE templateFiles RELATIVE ${srcDir} ${srcDir}/*)
-    foreach(templateFile ${templateFiles})
-        message(STATUS "Copying file ${srcDir}/${templateFile}") #...
-        #message(STATUS "    ... into ${destDir}/${templateFile}")
-        configure_file(${srcDir}/${templateFile} ${destDir}/${templateFile} COPYONLY)
-    endforeach(templateFile)
-endmacro(copy_dir)
+
 
 # Set paths for source and include files
 set(RAYTRACER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(RAYTRACER_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-# Set path for commons libraries path
+# Set path for commons libraries
 set(RAYTRACER_COMMONS "${CMAKE_CURRENT_SOURCE_DIR}/commons")
+
+# Set path for resources
+set(RAYTRACER_RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/resources")
 
 if (NOT WIN32)
 set(CMAKE_MODULE_PATH /usr/local/lib/cmake /usr/local/lib/x86_64-linux-gnu/cmake)
@@ -43,8 +64,10 @@ endif (NOT WIN32)
 # Add user-defined library path
 if (WIN32)
 	set(RAYTRACER_COMMONS "${CMAKE_CURRENT_SOURCE_DIR}/commons/windows")
-	set(CMAKE_LIBRARY_PATH "${RAYTRACER_COMMONS}")
+	set(RAYTRACER_RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/resources/windows")
 endif (WIN32)
+
+set(CMAKE_LIBRARY_PATH "${RAYTRACER_COMMONS}")
 
 # Required packages
 find_package(OpenGL REQUIRED)
@@ -100,23 +123,41 @@ foreach(_inc IN ITEMS ${INCLUDE_LIST})
     get_filename_component(_inc_path "${_inc}" PATH)
     file(RELATIVE_PATH _inc_path_rel "${RAYTRACER_INCLUDE}" "${_inc_path}")
     string(REPLACE "/" "\\" _group_path "${_inc_path_rel}")
-    source_group("Include Files\\${_group_path}" FILES "${_inc}")
+    source_group("Header Files\\${_group_path}" FILES "${_inc}")
 endforeach()
+
+if (WIN32)
+
+	#configure_files("${RAYTRACER_RESOURCES}/windows/" "${CMAKE_BINARY_DIR}/resources/")
+	
+	
+	file(GLOB_RECURSE RESOURCE_LIST 
+	LIST_DIRECTORIES false
+    "${RAYTRACER_RESOURCES}/*.h*"
+	"${RAYTRACER_RESOURCES}/*.rc*"
+	"${RAYTRACER_RESOURCES}/*.ico"
+	)
+	
+
+	foreach(_res IN ITEMS ${RESOURCE_LIST})
+		source_group("Resource Files\\" FILES "${_res}")
+	endforeach()
+	
+  
+endif (WIN32)
 
 
 # Final step, adding all libs and sources together into executable program
 include_directories(${RAYTRACER_INCLUDE} ${GLEW_INCLUDE_DIR} ${FREEGLUT_INCLUDE_DIR})
 link_directories(${FREEGLUT_LIBRARIES_DIR} ${CMAKE_LIBRARY_PATH}) #${GLEW_INCLUDE_DIRS}
 #ink_libraries(${GLEW_LIBRARIES})
-add_executable(Raytracer ${SOURCE_LIST} ${INCLUDE_LIST})
+add_executable(Raytracer ${SOURCE_LIST} ${INCLUDE_LIST} ${RESOURCE_LIST})
 
 target_link_libraries(Raytracer optimized glew32 debug glew32d general ${OPENGL_LIBRARY})
 
 target_link_libraries(Raytracer optimized ${FREEGLUT_LIBRARIES})
 
 target_link_libraries(Raytracer debug ${FREEGLUT_LIBRARIES_DEBUG})
-
-
 
 set_target_properties( Raytracer
     PROPERTIES
