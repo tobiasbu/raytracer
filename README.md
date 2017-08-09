@@ -3,19 +3,15 @@
 
 Simple Raytracer for Advanced Computer Graphics Techniques class 2017/1.
 
-Visit my website for more screen-shots.
+Visit my website for more screen-shots. (Comming soon)
 
 ## Releases
 
 Dowload the latest release:
 
-| Windows 32-bit |
-| -------------- |
-| Link |
-
-You can build the projet using CMake. The project was tested only on MSVC 2013 and 2017.
-
-The project has the following dependencies: [freeglut](http://freeglut.sourceforge.net/) and [glew](http://glew.sourceforge.net/).
+| Windows - 25.75 MB |
+| ------------------ |
+| [tobiasbu-raytracer-1.0.0-win.zip](https://github.com/tobiasbu/raytracer/releases/download/v1.2.0/tobiasbu-raytracer-1.0.0-win.zip) |
 
 ## Features
 
@@ -54,6 +50,12 @@ The project has the following dependencies: [freeglut](http://freeglut.sourcefor
     - Posterize, Brightness and Contrast, Grayscale, Threshold and Invert colors
 - Multi-thread raytracing 
     - Screen space division or Each line one thread
+
+## Building
+
+You can build the projet using CMake. The project was tested only on MSVC 2013 and 2017.
+
+The project has the following dependencies: [freeglut](http://freeglut.sourceforge.net/) and [glew](http://glew.sourceforge.net/).
 
 ## Code and References
 
