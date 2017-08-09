@@ -2,7 +2,7 @@
 
 program: rt
 
-output: output/output_simple_mesh.png
+output: output_simple_mesh.png
 
 shadows: 0
 

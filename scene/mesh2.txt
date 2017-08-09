@@ -2,7 +2,7 @@
 
 program: rt
 
-output: output/cat.png
+output: teapot.png
 
 shadows: 0
 

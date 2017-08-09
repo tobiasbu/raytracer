@@ -2,7 +2,7 @@
 
 program: rt
 
-output: output/happy_budha.png
+output: happy_budha.png
 
 shadows: 0
 

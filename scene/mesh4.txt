@@ -2,7 +2,7 @@
 
 program: rt
 
-output: output/high_dragon.png
+output: high_dragon.png
 
 shadows: 0
 
