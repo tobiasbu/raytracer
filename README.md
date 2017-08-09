@@ -1,5 +1,6 @@
 # raytracer
-![Alt text](https://raw.githubusercontent.com/tobiasbu/raytracer/master/resources/raytracer_icon.png)
+![Alt text](https://raw.githubusercontent.com/tobiasbu/raytracer/master/resources/raytracer_icon128x.png)
+
 Simple Raytracer for Advanced Computer Graphics Techniques class 2017/1.
 
 Visit my website for more screen-shots.
@@ -13,6 +14,7 @@ Dowload the latest release:
 | Link |
 
 You can build the projet using CMake. The project was tested only on MSVC 2013 and 2017.
+
 The project has the following dependencies: [freeglut](http://freeglut.sourceforge.net/) and [glew](http://glew.sourceforge.net/).
 
 ## Features
@@ -21,7 +23,7 @@ The project has the following dependencies: [freeglut](http://freeglut.sourcefor
     - Apply Kernel Convulation filters
     - Color tools
     - Scene Normal map, depth map and edges detection preview
-- Scene file Loader
+- Scene file loader
 - Basic Raytracer Architeture (Whitted-style) 
     - Fresnel: Reflection and Refraction
     - Point and Directional Light
