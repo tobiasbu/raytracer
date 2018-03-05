@@ -67,6 +67,12 @@ public:
 		return is;
 	}
 
+	friend const std::string & operator>>(const std::string & is, GlutConsole & obj)
+	{
+		obj.appendLine(is);
+		return is;
+	}
+
 	friend const int & operator>>(const int & is, GlutConsole & obj)
 	{
 		std::stringstream s;

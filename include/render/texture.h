@@ -11,11 +11,18 @@ enum TextureInterpolation {
 	// Trillinear TODO
 };
 
+enum TextureWrap {
+	Clamp,
+	Repeat
+	// TODO mirror
+};
+
 class Texture 
 {
 private:
 
 	TextureInterpolation _interpolation = TextureInterpolation::Point;
+	TextureWrap _wrap = TextureWrap::Clamp;
 	Image * _image;
 	bool _loaded;
 
@@ -29,6 +36,8 @@ public:
 	~Texture();
 	bool load(const std::string & filename);
 	bool loaded();
+	void setInterpolation(const TextureInterpolation & interpolation);
+	void setWrap(const TextureWrap & wrap);
 	
 	Color getTexel(float x, float y);
 	Color getTexel(vec2 texCoord);

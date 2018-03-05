@@ -13,6 +13,18 @@
 #include <errno.h>
 #include <fstream>
 
+#define RAYTRACER_VERSION_MAJOR 1
+#define RAYTRACER_VERSION_MINOR 2
+#define RAYTRACER_VERSION_BUILD 1
+
+
+std::string getAppVersion()
+{
+	std::stringstream ss;
+	ss << RAYTRACER_VERSION_MAJOR << "." << RAYTRACER_VERSION_MINOR << "." << RAYTRACER_VERSION_BUILD;
+	return ss.str();
+}
+
 AppListener::~AppListener()
 {
 	raytracerApplication.clear();
@@ -448,7 +460,7 @@ void AppListener::reshape(int width, int height, int previous_width, int previou
 
 void  AppListener::printHeaders() {
 
-	"** Simple Raytracer 1.2 **\n" >> console;
+	console.appendLine("** Simple Raytracer " + getAppVersion() + " **\n");
 	//Debug::log("Starting Ray Programm\n");
 	"* Submit 'config' to overload Raytracer Configuration\n" >> console;
 	"* Type the scene file name.\n" >> console;

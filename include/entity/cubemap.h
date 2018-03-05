@@ -41,6 +41,8 @@ public:
 
 	bool getTexel(const vec3 & direction, Color & outColor);
 
+	static vec2 getTexelDirection(const vec3 & direction, int & faceIndex);
+
 };
 
 #endif

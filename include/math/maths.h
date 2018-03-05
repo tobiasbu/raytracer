@@ -32,6 +32,9 @@ namespace Math {
 	// float modulo
 	float modulo(const float & x);
 
+	// TODO
+	float fmodulo(const float & x, const float & y);
+
 	float degtorad(float);
 	float radtodeg(float);
 

@@ -1,6 +1,7 @@
 
 #include "math/vec2.h"
 #include "math/vec4.h"
+#include "math\maths.h"
 #include <math.h>
 
 const vec2 vec2::zero = vec2(0.0);
@@ -89,6 +90,13 @@ void vec2::sub(const vec2 & v) {
 	x -= v.x;
 	y -= v.y;
 
+}
+
+vec2 vec2::mod(const vec2 & other)
+{
+	this->x = std::fmodf(this->x, other.x); // other.x;
+	this->y = std::fmodf(this->y, other.y);
+	return *this;
 }
 
 void vec2::negate() {

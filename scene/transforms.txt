@@ -1,0 +1,92 @@
+
+
+program: rt
+
+output: output/transform.png
+
+shadows: 0
+
+projection: 60
+
+background: 0.18 0.075 0.05
+background-image: img/wall.png
+background-tile: 0.25 0.25
+
+camera-pos: 0 0 -4
+camera-target: box1
+
+begin material boxMaterial
+	texture: obj/crate.bmp
+	normalmap: obj/crate_normal.bmp
+	specular: 1 1 1
+	ns: 20
+end
+
+begin material boxMaterial2
+	texture: obj/crate.bmp
+	normalmap: obj/crate_normal.bmp
+	specular: 1 1 1
+	ns: 0.45
+end
+
+begin mesh box
+	file: obj/caixa.obj
+	angle: 0 35 0
+	position: 5 0 0 
+	scale: 1 1.2 1.2
+	material: boxMaterial
+end
+
+begin mesh box1
+	file: obj/caixa.obj
+	angle: 0 20 15
+	scale: 0.55 1.45 1
+	position: 0 0 0 
+	material: boxMaterial
+end
+
+begin mesh box2
+	file: obj/caixa.obj
+	angle: 35 15 -8
+	scale: 0.8 1 1
+	position: -3 0 1 
+	material: boxMaterial2
+end
+
+
+
+begin light
+	type: point
+	color: 1 1 1
+	position: 0 -0.5 -2.5
+	intensity: 30
+end
+
+
+begin light
+	type: point
+	color: 1 0.5 1
+	position: 2.25 -0.5 1.85
+	intensity: 50
+end
+
+begin light
+	type: point
+	color: 0.5 1 1
+	position: -2.3 -1.2 -2
+	intensity: 35
+end
+
+begin light
+	type: point
+	color: 1 1 0.5
+	position: -1 2 0.5
+	intensity: 20
+end
+
+begin light
+	type: point
+	color: 1 1 1
+	position: 0 0.75 -4
+	intensity: 30
+end

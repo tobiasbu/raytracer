@@ -25,6 +25,8 @@ private:
 	uint32_t _farAABBIndex;
 	uint32_t _closeAABBIndex;
 
+	Texture * _backgroundImage = nullptr;
+	vec2 tile = vec2(1, 1);
 	CubeMap * _cubeMap;
 
 	std::vector<Primitive *> _objects;
@@ -50,6 +52,8 @@ public:
 	// background color
 	void setAmbientColor(Color color);
 	void setBackground(Color color);
+	void setBackgroundImage(Texture * tex);
+	void setBackgroundImageTile(const vec2 & tile);
 
 	void setCubeMap(CubeMap * cubemap);
 

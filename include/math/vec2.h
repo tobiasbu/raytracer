@@ -29,6 +29,7 @@ public:
 	void mult(const vec2 &);
 	void div(const vec2 &);
 	void sub(const vec2 &);
+	vec2 mod(const vec2 & other);
 	void negate();
 	void normalize();
 
@@ -37,6 +38,7 @@ public:
 	float magnitude();
 	vec2 normalized();
 	vec2 negative();
+	
 
 	// Static Functions
 

@@ -1,6 +1,6 @@
 
 #include "render/texture.h"
-#include "math/maths.h"
+#include "math\maths.h"
 
 Texture::Texture()
 	:
@@ -43,6 +43,16 @@ bool Texture::loaded()
 	return _loaded;
 }
 
+void Texture::setInterpolation(const TextureInterpolation & interpolation)
+{
+	_interpolation = interpolation;
+}
+
+void Texture::setWrap(const TextureWrap & wrap)
+{
+	_wrap = wrap;
+}
+
 unsigned char * Texture::getPixelAt(int x, int y)
 {
 	x = Math::clampint(x, 0, _image->getWidth() - 1);
@@ -74,6 +84,12 @@ Color Texture::getTexel(float x, float y)
 	Color color;
 	int px, py;
 
+	if (_wrap == TextureWrap::Repeat)
+	{
+		x = std::fmodf(x, 1.0);
+		y = std::fmodf(y, 1.0);
+	}
+
 	// ratio_x
 	x = (x * _image->getWidth()); // (1-x)
 
@@ -83,6 +99,8 @@ Color Texture::getTexel(float x, float y)
 	// pixels coordinates
 	px = (int)x;
 	py = (int)y;
+
+
 
 
 	if (_interpolation == TextureInterpolation::Point) 

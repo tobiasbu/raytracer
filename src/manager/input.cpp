@@ -98,17 +98,6 @@ bool Input::load(const char * filename, AppAttributes & attributes) {
 
 
 	
-	//BinaryProperty teste(new vec3(0, 1, 0), TokenType::Vector3);
-	//BinaryProperty teste2("bom dia", TokenType::String);
-	
-	//void * type = nullptr;
-	//std::cout << *(vec3*)teste.data << " "  << std::endl;
-	//BinaryProperty::get(teste, type);
-	//std::cout << *(vec3*)(type) << type << std::endl;
-	//*(vec3*)teste.data
-
-	
-	
 	FILE.close();
 
 	parsePropreties();
@@ -234,6 +223,17 @@ void Input::readTokens(const std::vector<std::string> & tokens) {
 			vec4 c = parseVector4(tokens, 1);
 			out->scene.setBackground(c);
 		}
+		else if (key == "background-image")
+		{
+
+			Texture * tex = new Texture();
+			tex->load(tokens[1]);
+			out->scene.setBackgroundImage(tex);
+		}
+		else if (key == "background-image-tile" || key == "background-tile")
+		{
+			out->scene.setBackgroundImageTile(parseVector2(tokens, 1));
+		}
 		else if (key == "ambient")
 		{
 			out->scene.setAmbientColor(parseVector4(tokens, 1));
@@ -267,6 +267,11 @@ void Input::readTokens(const std::vector<std::string> & tokens) {
 				val = 0;
 
 			out->options.antiAliasSamples = val;
+		}
+		else if (key == "outline-color" || key == "border-color")
+		{
+			vec3 c = parseVector3(tokens, 1);
+			out->options.outlineColor = c.toColor();
 		}
 		else {
 

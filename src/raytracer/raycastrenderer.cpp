@@ -491,7 +491,7 @@ void  RaycastRender::computeSobelEdges()
 
 			smoth.apply(normalSobel, normalSobel);
 
-			ImageOperator::bitwise_or_mask(output, normalSobel, Color::white);
+			ImageOperator::bitwise_or_mask(output, normalSobel, _options->outlineColor);
 
 			edges = normalSobel;
 
@@ -551,7 +551,7 @@ void  RaycastRender::computeSobelEdges()
 
 			//ImageColors::blend(output, fulldepth);
 			//ImageOperator::bitwise_and(output, fulldepth);
-			ImageOperator::bitwise_or_mask(output, fulldepth, Color::white);
+			ImageOperator::bitwise_or_mask(output, fulldepth, _options->outlineColor);
 
 
 			edges = fulldepth;

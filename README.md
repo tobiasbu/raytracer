@@ -1,9 +1,9 @@
 # raytracer
 ![Alt text](https://raw.githubusercontent.com/tobiasbu/raytracer/master/resources/raytracer_icon128x.png)
 
-Simple Raytracer for Advanced Computer Graphics Techniques class 2017/1.
+Simple Raytracer for Advanced Computer Graphics Techniques class 2017/1. Written on C++11/14.
 
-Visit my website for more screen-shots. (Comming soon)
+[Visit the website](https://tobiasbu.github.io/website/portfolio/raytracer/) for more screen-shots. (Comming soon)
 
 ## Releases
 
@@ -18,7 +18,7 @@ Dowload the latest release:
 - Rendered scene preview and editing tools
     - Apply Kernel Convulation filters
     - Color tools
-    - Scene Normal map, depth map and edges detection preview
+    - Scene Normal map, Depth map and Edges Detection previews
 - Scene file loader
 - Basic Raytracer Architeture (Whitted-style) 
     - Fresnel: Reflection and Refraction
@@ -41,7 +41,7 @@ Dowload the latest release:
     - Normal mapping
     - Billinear and Point filter
     - Cube-map
-- Filters (Kernel Convolution)
+- Kernel Convolution Filters
     - Laplacian, Sharpen, Unsharp-Mask, Box-Blur, Motion-Blur, Smooth-Blur, Gaussian Blur and Emboss
 - Silhouette Detection using Sobel Filter
     - Using scene normal map and depth map
@@ -53,7 +53,8 @@ Dowload the latest release:
 
 ## Building
 
-You can build the projet using CMake. The project was tested only on MSVC 2013 and 2017.
+You can build the projet using CMake. The project was tested only on MSVC 2013 and 2017. 
+Note: the code is a big mess! :S Any improvement is very welcomed.
 
 The project has the following dependencies: [freeglut](http://freeglut.sourceforge.net/) and [glew](http://glew.sourceforge.net/).
 
@@ -82,3 +83,16 @@ Websites of data and resources sources:
 - [OpenGameArt.org](https://opengameart.org/)
 - [John Burkardt](http://people.sc.fsu.edu/~jburkardt/index.html)
 - [Bump-map a sphere with a texture map](https://stackoverflow.com/questions/32550498/bump-map-a-sphere-with-a-texture-map)
+
+## License
+
+    The MIT License (MIT)
+
+    Simple Raytracer
+    Copyright (c) 2017 Tobias Ulrich
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

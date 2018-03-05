@@ -8,6 +8,7 @@ Scene::Scene()
 	_ambientLight = Color(0.035f, 1);
 	_defaultMaterial = new Material;
 	_cubeMap = nullptr;
+	_backgroundImage = nullptr;
 	_meshesCount = 0;
 	_trianglesCount = 0;
 	_primitivesCount = 0;
@@ -27,6 +28,21 @@ void Scene::setBackground(Color color)
 {
 	_backgroundColor = color;
 }
+
+void Scene::setBackgroundImage(Texture * tex)
+{
+	_backgroundImage = tex;
+	if (tex != nullptr)
+	{
+		_backgroundImage->setWrap(TextureWrap::Repeat);
+	}
+}
+
+void Scene::setBackgroundImageTile(const vec2 & tile)
+{
+	this->tile = tile;
+}
+
 
 void Scene::setCubeMap(CubeMap * cubemap)
 {
@@ -49,6 +65,15 @@ Color Scene::getBackgroundColor(const vec3 & direction)
 		Color col = _backgroundColor;
 		_cubeMap->getTexel(direction, col);
 		return col;
+	}
+	else if (_backgroundImage != nullptr)
+	{
+		int face = 0;
+		vec2 uv = CubeMap::getTexelDirection(direction, face);
+		uv.div(tile);
+		
+		return _backgroundImage->getTexel(uv);
+
 	} else
 		return _backgroundColor;
 }
@@ -100,6 +125,11 @@ void Scene::clear() {
 	_meshesCount = 0;
 	_trianglesCount = 0;
 	_primitivesCount = 0;
+
+	if (_backgroundImage != nullptr)
+		delete _backgroundImage;
+
+	_backgroundImage = nullptr;
 
 	if (_cubeMap != nullptr)
 	delete _cubeMap;
