@@ -3,9 +3,8 @@
 
 Simple Raytracer for Advanced Computer Graphics Techniques class 2017/1. Written on C++11/14.
 
-| --- | --- | --- |
-| ![Alt](https://raw.githubusercontent.com/tobiasbu/raytracer/master/resources/raytracer0.png) | ![Alt](https://raw.githubusercontent.com/tobiasbu/raytracer/master/resources/raytracer1.png) | ![Alt](https://raw.githubusercontent.com/tobiasbu/raytracer/master/resources/raytracer2.png) |
-| --- | --- | --- |
+<img src="https://raw.githubusercontent.com/tobiasbu/raytracer/master/resources/raytracer0.png" width=33% style="display:inline-block; margin-left: 4px;"> <img src="https://raw.githubusercontent.com/tobiasbu/raytracer/master/resources/raytracer1.png" width=33% style="display:inline-block; margin-left: 4px;"> <img src="https://raw.githubusercontent.com/tobiasbu/raytracer/master/resources/raytracer2.png" width=33% style="display:inline-block;">
+
 
 
 [Visit the website](https://tobiasbu.github.io/portfolio/raytracer/) for more screen-shots and details.
