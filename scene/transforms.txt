@@ -11,6 +11,7 @@ projection: 60
 background: 0.18 0.075 0.05
 background-image: img/wall.png
 background-tile: 0.25 0.25
+ambient: 0.0666 0 0
 
 camera-pos: 0 0 -4
 camera-target: box1
